@@ -84,8 +84,13 @@ export class EventsService {
     ```
      */
 
-  async getEventsWithWorkshops() {
-    throw new Error('TODO task 1');
+  async getEventsWithWorkshops(app) {
+    return new promise((resolve,reject) => {
+    const hadworkshops = this.app.query('SELECT * from events where workshops != Null');
+      if(hadworkshops){
+        resolve(res.send(hadworkshops);}
+      reject();
+    });
   }
 
   /* TODO: complete getFutureEventWithWorkshops so that it returns events with workshops, that have not yet started
@@ -155,6 +160,10 @@ export class EventsService {
     ```
      */
   async getFutureEventWithWorkshops() {
-    throw new Error('TODO task 2');
-  }
+    return new promise((resolve,reject) => {
+    const hadworkshops = this.app.query('SELECT * from events where workshops != Null and workshops.start == workshops.end');
+      if(hadworkshops){
+        resolve(res.send(hadworkshops);}
+      reject();
+    });
 }
